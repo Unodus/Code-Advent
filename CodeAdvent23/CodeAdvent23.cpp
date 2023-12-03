@@ -5,12 +5,61 @@
 
 using namespace std;
 
+bool IsKeyInString(string input, string key, int letterID);
+vector<string> GetFileLines(string fileName);
+
 int main()
+{
+	int runningTotal = 0;
+	string keys[] = { "red",  "green" , "blue" };
+	int keyLength = keys->size();
+	vector<string> inputLines = GetFileLines("input.txt");
+	//int keyMaxTotals[] = { 12, 13, 14 };
+
+	int GameID = 0;
+	for (string line : inputLines)
+	{
+		GameID++;
+		int keyHighest[] = { 0,0,0 };
+		int letterID = 0;
+		for (char letter : line)
+		{
+			for (int iKey = 0; iKey < keyLength; iKey++)
+			{
+				if (!IsKeyInString(line, keys[iKey], letterID)) continue;
+				string sDigit = line.substr(letterID - 3, 2);
+				int digit = stoi(sDigit);
+				/*if (digit > keyMaxTotals[iKey])
+				{
+					std::cout << GameID << " was a failure: " << keys[iKey] << endl;
+					goto skip;
+				}*/
+				if (digit > keyHighest[iKey]) keyHighest[iKey] = digit;
+			}
+			letterID++;
+		}
+		runningTotal += (keyHighest[0] * keyHighest[1] * keyHighest[2]);
+		//	skip: runningTotal = runningTotal;
+	}
+	std::cout << runningTotal << endl;
+}
+
+bool IsKeyInString(string input, string key, int letterID)
+{
+	int remainingSpace = input.size() - letterID;
+	int keyLength = key.size();
+	int substrLength = keyLength < remainingSpace ? keyLength : remainingSpace;
+	string substr = input.substr(letterID, substrLength);
+	if (substr == key) return true;
+	else return false;
+}
+
+vector<string> GetFileLines(string fileName)
 {
 	ifstream myFile;
 	vector<string> inputLines;
 
-	myFile.open("input.txt");
+	myFile.open(fileName);
 	if (myFile.is_open())
 	{
 		string line;
@@ -20,42 +69,5 @@ int main()
 		}
 	}
 	myFile.close();
-	int runningTotal = 0;
-	string numbers[] = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-
-	for (string line : inputLines)
-	{
-		char startFlag = 0;
-		char endFlag = 0;
-
-		for (int iChar = 0; iChar < line.size(); iChar++)
-		{
-			if (isdigit(line[iChar]))
-			{
-				if (startFlag == 0) startFlag = line[iChar];
-				endFlag = line[iChar];
-			}
-			else 
-			{
-				for (int iNum = 0 ; iNum < 10; iNum++)
-				{
-					int substrLength = numbers[iNum].size() < line.size() - iChar ? numbers[iNum].size() : line.size() - iChar;
-
-					string substr = line.substr(iChar, substrLength);
-					if (substr == numbers[iNum])
-					{
-						if (startFlag == 0) startFlag = to_string(iNum)[0];
-						endFlag = to_string(iNum)[0];
-					}
-				}
-			}
-		}
-		string compound = { startFlag, endFlag };
-		int number = stoi(compound);
-		runningTotal += number;
-	}
-
-	std::cout << runningTotal << endl;
-
+	return inputLines;
 }
-

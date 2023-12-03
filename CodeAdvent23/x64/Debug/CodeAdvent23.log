@@ -1,6 +1,5 @@
 ﻿  CodeAdvent23.cpp
-C:\Users\james\Documents\Github\Code-Advent-2023\CodeAdvent23\CodeAdvent23.cpp(16,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\james\Documents\Github\Code-Advent-2023\CodeAdvent23\CodeAdvent23.cpp(49,2): warning C4102: 'skip': unreferenced label
-C:\Users\james\Documents\Github\Code-Advent-2023\CodeAdvent23\CodeAdvent23.cpp(59,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\james\Documents\Github\Code-Advent-2023\CodeAdvent23\CodeAdvent23.cpp(60,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\james\Documents\Github\Code-Advent-2023\CodeAdvent23\CodeAdvent23.cpp(62,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\james\Documents\Github\Code-Advent-2023\CodeAdvent23\CodeAdvent23.cpp(107,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\james\Documents\Github\Code-Advent-2023\CodeAdvent23\CodeAdvent23.cpp(108,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   CodeAdvent23.vcxproj -> C:\Users\james\Documents\Github\Code-Advent-2023\x64\Debug\CodeAdvent23.exe

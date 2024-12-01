@@ -3,59 +3,69 @@
 #include <iostream>
 #include <vector>
 
+
 using namespace std;
+
+void bubbleSort(vector<int>& v)
+{
+	int n = v.size();
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = 0; j < n - i - 1; j++)
+		{
+			if (v[j] > v[j + 1])	swap(v[j], v[j + 1]);
+		}
+	}
+}
+
+int GetIntFromString(string line, int begin, int end)
+{
+	string tempString = "";
+	for (int iChar = begin; iChar < end; iChar++)
+	{
+		if (isdigit(line[iChar]))		{			tempString += line[iChar];		}
+	}
+	return stoi(tempString);
+}
 
 int main()
 {
 	ifstream myFile;
 	vector<string> inputLines;
-
 	myFile.open("input.txt");
 	if (myFile.is_open())
 	{
 		string line;
-		while (getline(myFile, line))
-		{
-			inputLines.push_back(line);
-		}
+		while (getline(myFile, line))		{ inputLines.push_back(line); }
 	}
 	myFile.close();
-	int runningTotal = 0;
-	string numbers[] = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
 
+	vector<int> list1;
+	vector<int> list2;
+
+	string tempString;
 	for (string line : inputLines)
 	{
-		char startFlag = 0;
-		char endFlag = 0;
-
-		for (int iChar = 0; iChar < line.size(); iChar++)
-		{
-			if (isdigit(line[iChar]))
-			{
-				if (startFlag == 0) startFlag = line[iChar];
-				endFlag = line[iChar];
-			}
-			else 
-			{
-				for (int iNum = 0 ; iNum < 10; iNum++)
-				{
-					int substrLength = numbers[iNum].size() < line.size() - iChar ? numbers[iNum].size() : line.size() - iChar;
-
-					string substr = line.substr(iChar, substrLength);
-					if (substr == numbers[iNum])
-					{
-						if (startFlag == 0) startFlag = to_string(iNum)[0];
-						endFlag = to_string(iNum)[0];
-					}
-				}
-			}
-		}
-		string compound = { startFlag, endFlag };
-		int number = stoi(compound);
-		runningTotal += number;
+		list1.push_back( GetIntFromString(line, 0, line.find_first_of(" ") ));
+		list2.push_back( GetIntFromString(line, line.find_last_of(" "), line.size() ));
 	}
 
-	std::cout << runningTotal << endl;
+	bubbleSort(list1);
+	bubbleSort(list2);
+
+	int totalDistance = 0;
+
+	for (int i : list1)
+	{
+		int count = 0;
+		for (int j : list2)
+		{
+			if (i == j) count++;
+		}
+		totalDistance += i * count;
+	}
+
+	std::cout << totalDistance;
 
 }
 

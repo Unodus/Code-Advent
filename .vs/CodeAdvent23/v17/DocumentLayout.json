@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\james\\Documents\\GitHub\\Code-Advent\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{486F6CA5-9E51-4202-B69E-2319B502274A}|CodeAdvent23\\CodeAdvent23.vcxproj|C:\\Users\\james\\Documents\\GitHub\\Code-Advent\\CodeAdvent23\\CodeAdvent23.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{486F6CA5-9E51-4202-B69E-2319B502274A}|CodeAdvent23\\CodeAdvent23.vcxproj|solutionrelative:CodeAdvent23\\CodeAdvent23.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{486F6CA5-9E51-4202-B69E-2319B502274A}|CodeAdvent23\\CodeAdvent23.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\2022\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.40.33807\\INCLUDE\\STRING||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "string",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include\\string",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include\\string",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include\\string",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include\\string",
+              "ViewState": "AQIAAFIAAAAAAAAAAAArwF8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-01T11:50:15.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CodeAdvent23.cpp",
+              "DocumentMoniker": "C:\\Users\\james\\Documents\\GitHub\\Code-Advent\\CodeAdvent23\\CodeAdvent23.cpp",
+              "RelativeDocumentMoniker": "CodeAdvent23\\CodeAdvent23.cpp",
+              "ToolTip": "C:\\Users\\james\\Documents\\GitHub\\Code-Advent\\CodeAdvent23\\CodeAdvent23.cpp",
+              "RelativeToolTip": "CodeAdvent23\\CodeAdvent23.cpp",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAkwEcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-01T11:08:41.003Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

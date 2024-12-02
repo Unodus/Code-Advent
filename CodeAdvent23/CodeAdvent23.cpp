@@ -18,7 +18,7 @@ void bubbleSort(vector<int>& v)
 	}
 }
 
-int GetIntFromString(string line, int begin, int end)
+int GetIntFromString(const string line, const int begin, const int end)
 {
 	string tempString = "";
 	for (int iChar = begin; iChar < end; iChar++)
@@ -44,7 +44,7 @@ int main()
 	vector<int> list2;
 
 	string tempString;
-	for (string line : inputLines)
+	for (const string line : inputLines)
 	{
 		list1.push_back( GetIntFromString(line, 0, line.find_first_of(" ") ));
 		list2.push_back( GetIntFromString(line, line.find_last_of(" "), line.size() ));
@@ -55,7 +55,7 @@ int main()
 
 	int totalDistance = 0;
 
-	for (int i : list1)
+	for (const int i : list1)
 	{
 		int count = 0;
 		for (int j : list2)

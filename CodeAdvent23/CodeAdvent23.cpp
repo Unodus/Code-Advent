@@ -7,7 +7,7 @@
 using namespace std;
 
 void bubbleSort(vector<int>& v)
-{
+{ // sorts a vector of ints from small to large
 	int n = v.size();
 	for (int i = 0; i < n - 1; i++)
 	{
@@ -18,54 +18,69 @@ void bubbleSort(vector<int>& v)
 	}
 }
 
-int GetIntFromString(const string line, const int begin, const int end)
-{
-	string tempString = "";
-	for (int iChar = begin; iChar < end; iChar++)
+
+vector<string> GetStringsFromFile(const string fileName)
+{ // Yes yes, I know this isn't an optimal use of strings... 
+	ifstream myFile;
+	vector<string> inputLines;
+	myFile.open(fileName);
+	if (myFile.is_open())
 	{
-		if (isdigit(line[iChar]))		{			tempString += line[iChar];		}
+		string line;
+		while (getline(myFile, line)) { inputLines.push_back(line); }
 	}
-	return stoi(tempString);
+	myFile.close();
+
+	return inputLines;
+}
+
+
+void GetIntsFromString(vector<int>& v, const string line, const char delimiter)
+{ // recursively searches string for all numbers  - yes, I know this probably isn't optimal...
+	int length = line.find(delimiter);
+	v.push_back(stoi(line.substr(0, length)));
+	if (length != -1) { return GetIntsFromString(v, line.substr(length + 1, line.size()), delimiter); }
+}
+
+bool NoProblemFinder(vector<int> numbers, int tolerance)
+{ // Guess we doin' recursion now... (Is this neccesary? Probably not!)
+	bool ascending = false; bool descending = false; bool unsafe = false;
+	int unalignedTotal = 0;	int alignedTotal = 0;
+	for (int i = 0; i < numbers.size() - 1; i++)
+	{
+		int difference = numbers[i] - numbers[i + 1];
+		unalignedTotal += difference;
+		alignedTotal += abs(difference);
+		if (abs(difference) > 3 || difference == 0 || abs(unalignedTotal) != alignedTotal)	unsafe = true;
+		if (unsafe)
+		{
+			if (tolerance > 0)
+			{
+				bool solutionFound;
+				for (int j = 0; j < numbers.size(); j++)
+				{
+					vector<int> copy = numbers;
+					copy.erase(copy.begin() + j);
+					solutionFound = NoProblemFinder(copy, tolerance - 1);
+					if (solutionFound) return true;
+				}
+			}
+			return false;
+		}
+	}
+	return true;
 }
 
 int main()
 {
-	ifstream myFile;
-	vector<string> inputLines;
-	myFile.open("input.txt");
-	if (myFile.is_open())
+	vector<string> inputLines = GetStringsFromFile("input.txt");
+	int safeThreads = 0;
+	for (string line : inputLines)
 	{
-		string line;
-		while (getline(myFile, line))		{ inputLines.push_back(line); }
+		vector<int> numbers;
+		GetIntsFromString(numbers, line, ' ');
+		if (NoProblemFinder(numbers, 2)) 			safeThreads++;
 	}
-	myFile.close();
-
-	vector<int> list1;
-	vector<int> list2;
-
-	string tempString;
-	for (const string line : inputLines)
-	{
-		list1.push_back( GetIntFromString(line, 0, line.find_first_of(" ") ));
-		list2.push_back( GetIntFromString(line, line.find_last_of(" "), line.size() ));
-	}
-
-	bubbleSort(list1);
-	bubbleSort(list2);
-
-	int totalDistance = 0;
-
-	for (const int i : list1)
-	{
-		int count = 0;
-		for (int j : list2)
-		{
-			if (i == j) count++;
-		}
-		totalDistance += i * count;
-	}
-
-	std::cout << totalDistance;
-
+	cout << safeThreads << endl;
 }
 

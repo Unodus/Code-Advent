@@ -1,2 +1,4 @@
 ﻿  CodeAdvent23.cpp
+C:\Users\james\Documents\GitHub\Code-Advent\CodeAdvent23\CodeAdvent23.cpp(49,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\Code-Advent\CodeAdvent23\CodeAdvent23.cpp(60,23): warning C4018: '<': signed/unsigned mismatch
   CodeAdvent23.vcxproj -> C:\Users\james\Documents\GitHub\Code-Advent\Debug\CodeAdvent23.exe

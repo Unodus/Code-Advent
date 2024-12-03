@@ -85,33 +85,27 @@ bool CheckContentAcceptable(const string input, const char delimiter)
 	for (int i = 0; i < input.size(); i++) { if (input[i] != delimiter && !isdigit(input[i])) return false; }
 	return true;
 }
-
-
-
 void RunNextFunctionInString(string& line, const vector<string>& operations, bool& writing, int& runningTotal)
 { // OK we doing this - but next time we using regex's
 	int start = -1;
+	int best = INT_MAX;
 	string nextOp;
 	for (string op : operations)
 	{
 		int temp = line.find(op);
-		if (temp < start || (start == -1 && temp != -1))
+		if (temp < best && (temp != -1))
 		{
 			start = temp;
+			best = temp;
 			nextOp = op;
 		}
 	}
-
-
-	if (start == -1) return;
-
+	if (start == -1)		return;
 	line = line.substr(start + nextOp.size(), line.size());
 	int end = line.find(")");
 	if (end == -1) return;
-
-	if (nextOp == "do(") 	writing = true;
-	if (nextOp == "don't(") writing = false;
-
+	if (nextOp == "do(")		writing = true;
+	if (nextOp == "don't(")		writing = false;
 	if (nextOp == "mul(" && writing)
 	{
 		string content = line.substr(0, end);
@@ -122,10 +116,7 @@ void RunNextFunctionInString(string& line, const vector<string>& operations, boo
 			runningTotal += numbers[0] * numbers[1]; // what happens if mul(i,i,i)? Hope it doesn't happen...
 		}
 	}
-
-	line = line.substr(end, line.size());
-
-	
+	line = line.substr(1, line.size()); // this is an awful, awful hack... But I'm sleepy and it fixes the error where a mul can be hidden inside a corrupt mul
 	return RunNextFunctionInString(line, operations, writing, runningTotal);
 }
 int main()
@@ -133,11 +124,9 @@ int main()
 	string inputLines = GetStringFromFile("input.txt");
 	vector<string> operations;
 	int runningTotal = 0;
-
 	vector <string> functions = { "mul(", "do(", "don't(" };
 	bool writing = true;
 	RunNextFunctionInString(inputLines, functions, writing, runningTotal);
-
 	cout << runningTotal << endl;
 }
 
